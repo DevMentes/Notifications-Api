@@ -1,0 +1,11 @@
+{
+  "name": "notifications-api",
+  "version": "1.0.0",
+  "description": "notification api service",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Camilo Alaniz",
+  "license": "ISC"
+}
