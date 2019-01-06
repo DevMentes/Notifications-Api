@@ -5,12 +5,10 @@ app.use(express.json());
 
 const axios = require('axios');
 const amqp = require('amqplib/callback_api');
-app.get('/', (req, res) => res.send('Hello world'));
 
 app.post('/message', async(req, res) => {
 
-    var message = '';
-
+    //conexión a colas en RabbitMQ
     amqp.connect('amqp://localhost', function(err, conn) {
         conn.createChannel(function(err, ch) {
             var q = 'hello';
@@ -18,11 +16,15 @@ app.post('/message', async(req, res) => {
             ch.assertQueue(q, {durable: false});
             console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
             ch.consume(q, function(msg) {
+                
+                //se envía mensaje por slack
                 sendMessage("Consumiendo eventos desde node js : " + msg.content.toString());
+            
             }, {noAck: true});
         });
     });
 
+    //funcion que envía el mensaje por slack
     async function sendMessage(message) {
         try{
             console.log(message);
