@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 
 const app = express();
@@ -7,6 +9,16 @@ app.use(express.json());
 const axios = require("axios");
 const amqp = require("amqplib/callback_api");
 const nodemailer = require("nodemailer");
+
+const rabbit_mq = {
+	host: process.env.RABBITMQ_HOST,
+	port: process.env.RABBITMQ_PORT,
+	user: process.env.RABBITMQ_USER,
+	pass: process.env.RABBITMQ_PASS
+};
+
+const slack_uri = process.env.SLACK_URI;
+const email = process.env.EMAIL;
 
 app.post("/message", async (req, res) => {
   //conexión a colas en RabbitMQ
