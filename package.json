@@ -4,6 +4,7 @@
   "description": "notification api service",
   "main": "app.js",
   "scripts": {
+    "start":"node app.js",
     "test": "test"
   },
   "author": "Camilo Alaniz",
