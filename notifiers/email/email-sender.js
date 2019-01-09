@@ -1,30 +1,32 @@
 const nodemailer = require('nodemailer');
 
-const email = process.env.EMAIL;
+module.exports = class EmailSender
+{
+    constructor(originEmail, originEmailPassword){
+        this.originEmail = originEmail;
+        this.transporter = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+                user: originEmail,
+                pass: originEmailPassword
+            }
+        });
+    }
 
-module.exports = function (destination, subject, message, files) {
+    send(addressee, subject, message, files = []){
+        var mailOptions = {
+            from: this.originEmail,
+            to: addressee,
+            subject: subject,
+            text: message
+        };
 
-    var transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: "panalbit.dte.test@gmail.com",
-            pass: "Panalbit.Dte.Test"
-        }
-    });
-    // Definimos el email
-    var mailOptions = {
-        from: email,
-        to: destination,
-        subject: subject,
-        text: message
-    };
-
-    // Enviamos el email
-    transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            console.log(error.message);
-        } else {
-            console.log("Email sent");
-        }
-    });
-}
+        this.transporter.sendMail(mailOptions, function(error, info) {
+            if (error) {
+                console.log(error.message);
+            } else {
+                console.log("Email sent");
+            }
+        });
+    }
+};

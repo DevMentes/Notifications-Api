@@ -1,10 +1,21 @@
-const amqp = require('amqplib/callback_api');
 const axios = require('axios');
 
-const queue = 'hello';
-const queueUri = 'amqp://localhost';
-const slackMessageSenderUrl = 'https://hooks.slack.com/services/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';
+module.exports = class SlackMessageSender
+{
+    constructor(slackMessageSenderUri){
+        this.slackMessageSenderUri = slackMessageSenderUri;
+    }
 
+    send(message){
+        let body = {
+                text: message
+            };
+
+        return axios.post(this.slackMessageSenderUri, body);
+
+    }
+};
+/*
 module.exports = function(slackMessageSenderUri){
 
     amqp.connect(queueUri, (err, conn) => {
@@ -26,17 +37,5 @@ module.exports = function(slackMessageSenderUri){
             });
         }
     );
-
-    async function sendMessage(message, slackMessageSenderUri) {
-        let body = {
-            text: message
-        };
-        try {
-            let response = await axios.post(slackMessageSenderUri, body);
-
-            return response.data;
-        } catch (error) {
-            return error.message;
-        }
-    }
 };
+*/
