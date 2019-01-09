@@ -49,9 +49,7 @@ app.post("/message", async (req, res) => {
         message: response.data
       });
     } catch (error) {
-      res.json({
-        error: error.message
-      });
+      saveEvent(message, error); 
     }
   }
 });

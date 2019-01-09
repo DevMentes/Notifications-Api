@@ -11,16 +11,4 @@ mongoose.connect('mongodb://localhost/pending_events')
 // Si no se conecta correctamente escupimos el error
 
 
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 
-const SendEmail = new Schema({
-    author: ObjectId,
-    remitente: String,
-    destinatario: String,
-    mensaje: String,
-    adjuntos: String,
-    date: Date
-});
-
-module.exports = SendEmail;
