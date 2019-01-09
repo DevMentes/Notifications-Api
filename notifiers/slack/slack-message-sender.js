@@ -1,7 +1,7 @@
 const amqp = require('amqplib/callback_api');
 const axios = require('axios');
 
-const queue = 'slackOutput';
+const queue = 'hello';
 const queueUri = 'amqp://localhost';
 const slackMessageSenderUrl = 'https://hooks.slack.com/services/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';
 
@@ -15,7 +15,7 @@ module.exports = function(slackMessageSenderUri){
                 ch.consume(
                     queue,
                     function(msg) {
-
+                        console.log(msg);
                         return sendMessage(
                             msg.content.toString(),
                             slackMessageSenderUri
