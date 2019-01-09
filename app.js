@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const express = require("express");
-
 const app = express();
 const port = 3000;
 app.use(express.json());
@@ -10,14 +9,6 @@ const axios = require("axios");
 const amqp = require("amqplib/callback_api");
 const nodemailer = require("nodemailer");
 
-const rabbit_mq = {
-	host: process.env.RABBITMQ_HOST,
-	port: process.env.RABBITMQ_PORT,
-	user: process.env.RABBITMQ_USER,
-	pass: process.env.RABBITMQ_PASS
-};
-
-const slack_uri = process.env.SLACK_URI;
 const email = process.env.EMAIL;
 
 app.post("/message", async (req, res) => {
@@ -65,7 +56,7 @@ app.post("/message", async (req, res) => {
   }
 });
 
-app.get("/mail", function(req, res) {
+app.get("/email", function(req, res) {
   sendMail("hola hola pirinola");
 });
 
@@ -80,7 +71,7 @@ function sendMail(message) {
   });
   // Definimos el email
   var mailOptions = {
-    from: "panalbit.dte.test@gmail.com",
+    from: email,
     to: "kmilo93sd@gmail.com",
     subject: "Prueba nodemailer",
     text: message
