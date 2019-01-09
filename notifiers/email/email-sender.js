@@ -21,12 +21,6 @@ module.exports = class EmailSender
             text: message
         };
 
-        this.transporter.sendMail(mailOptions, function(error, info) {
-            if (error) {
-                console.log(error.message);
-            } else {
-                console.log("Email sent");
-            }
-        });
+        return this.transporter.sendMail(mailOptions);
     }
 };
