@@ -1,14 +1,16 @@
 const nodemailer = require('nodemailer');
+const {ORIGIN_EMAIL, EMAIL_PASS} = require('../../config/config');
 
-module.exports = class EmailSender
-{
-    constructor(originEmail, originEmailPassword){
-        this.originEmail = originEmail;
+module.exports = class EmailSender {
+
+    constructor(){
+        this.originEmail = ORIGIN_EMAIL;
+        console.log(ORIGIN_EMAIL);
         this.transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
-                user: originEmail,
-                pass: originEmailPassword
+                user: ORIGIN_EMAIL,
+                pass: EMAIL_PASS
             }
         });
     }
