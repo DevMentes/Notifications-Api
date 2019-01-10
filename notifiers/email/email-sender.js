@@ -5,7 +5,6 @@ module.exports = class EmailSender {
 
     constructor(){
         this.originEmail = ORIGIN_EMAIL;
-        console.log(ORIGIN_EMAIL);
         this.transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
