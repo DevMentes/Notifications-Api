@@ -8,7 +8,8 @@ module.exports = class SendSlackMessageService{
 
             slackMessageSender.send(event.slackUri, event.message);
         }catch (error) {
-            //saveError and event
+            let type = 'email';
+            sendEvent(event, type,error.message);
         }
     }
 }
