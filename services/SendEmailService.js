@@ -4,7 +4,6 @@ const send_email = require('../schema/email');
 module.exports = class SendEmailService{
 
     static async send(event){
-        console.log(event);
         try {
             let emailSender = new EmailSender();
             await emailSender.send(event.addressee, event.subject, event.message, event.files);
@@ -23,9 +22,6 @@ function sendEvent(event, type, errorMessage){
         messageError:errorMessage
     };
 
-    console.log(correo);
-
     let documents = new send_email.email(correo);
-    console.log(JSON.stringify(documents));
     documents.save();
 }

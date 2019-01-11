@@ -21,7 +21,6 @@ module.exports = class EmailSender {
             subject: subject,
             text: message
         };
-
         return this.transporter.sendMail(mailOptions);
     }
 };
