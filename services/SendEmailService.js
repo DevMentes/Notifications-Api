@@ -1,14 +1,31 @@
 const EmailSender = require('../notifiers/email/email-sender');
+const send_email = require('../schema/email');
 
 module.exports = class SendEmailService{
 
     static async send(event){
+        console.log(event);
         try {
             let emailSender = new EmailSender();
             await emailSender.send(event.addressee, event.subject, event.message, event.files);
         }catch (error) {
-            //here should save event data
-            return 'Something was wrong';
+            let type = 'email';
+            sendEvent(event, type,error.message);
         }
     }
 };
+function sendEvent(event, type, errorMessage){
+    //hacer algo para guardar en mongo estos datos
+    let correo = {
+        event: event,
+        ocurredOn: Date(),
+        type:type,
+        messageError:errorMessage
+    };
+
+    console.log(correo);
+
+    let documents = new send_email.email(correo);
+    console.log(JSON.stringify(documents));
+    documents.save();
+}

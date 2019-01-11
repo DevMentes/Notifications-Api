@@ -24,27 +24,11 @@ router.get("/message", async (req, res) => {
 
 router.get("/email", (req, res) => {
     let event = {
-        addressee:'kmilo93sd@gmail.com',
+        addressee:'kmilo@gmail.com',
         subject:'ascac',
         message:'avva',
         files:[]
     };
     SendEmailService.send(event);
 });
-function sendEvent(event, type, errorMessage){
-    //hacer algo para guardar en mongo estos datos
-    let correo = {
-        event: event,
-        ocurredOn: Date(),
-        type:type,
-        messageError:errorMessage
-    };
-
-    console.log(correo);
-
-    let documents = new send_email.email(correo);
-    console.log(JSON.stringify(documents));
-    documents.save();
-}
-
 module.exports = router;

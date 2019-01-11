@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Usamos el método connect para conectarnos a nuestra base de datos
-mongoose.connect('mongodb://localhost/pending_events')
+mongoose.connect('mongodb://localhost/event_storage')
     .then(() => {
 
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
