@@ -5,7 +5,6 @@ const router = express.Router();
 const SendEmailService = require('./services/SendEmailService');
 const SendSlackMessageService = require('./services/SendSlackMessageService');
 
-//crear controllers
 router.get('/', (req, res) => {
     res.json({
         status:'working'
@@ -31,5 +30,4 @@ router.get("/email", (req, res) => {
     };
     SendEmailService.send(event);
 });
-
 module.exports = router;
