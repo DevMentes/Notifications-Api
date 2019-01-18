@@ -2,12 +2,14 @@ const axios = require('axios');
 
 module.exports = class SlackMessageSender
 {
-    send(slackMessageSenderUri ,message){
-        let body = {
+    async send(slackMessageSenderUri ,message){
+        const body = {
                 text: message
             };
 
-        return axios.post(slackMessageSenderUri, body);
+        const res = await axios.post(slackMessageSenderUri, body);
+
+        return res;
 
     }
 };

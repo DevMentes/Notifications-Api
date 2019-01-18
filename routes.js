@@ -17,7 +17,10 @@ router.get("/message", async (req, res) => {
         slackUri:'https://hooks.slack.com/services/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',
         message:'doña limón.'
     };
-    SendSlackMessageService.sendFromEvent(event);
+    await SendSlackMessageService.sendFromEvent(event);
+    res.json({
+        message:'Message was sent.'
+    })
 
 });
 
