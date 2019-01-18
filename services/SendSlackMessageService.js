@@ -3,7 +3,7 @@ const send_email = require('../schema/email');
 
 module.exports = class SendSlackMessageService{
 
-     async static sendFromEvent(event){
+     async sendFromEvent(event){
         try {
             let slackMessageSender = new SlackMessageSender();
             await slackMessageSender.send(event.slackUri, event.message);
