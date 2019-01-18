@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Usamos el método connect para conectarnos a nuestra base de datos
-mongoose.connect('mongodb://localhost/event_storage')
+mongoose.connect('mongodb://admin:admin000000@ds161134.mlab.com:61134/heroku_lxfx2pqk')
     .then(() => {
 
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
