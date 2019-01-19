@@ -7,7 +7,7 @@ const SendSlackMessageService = require('./services/SendSlackMessageService');
 
 router.get('/', (req, res) => {
     res.json({
-        status:'working'
+        status:'working fine!'
     });
 });
 
