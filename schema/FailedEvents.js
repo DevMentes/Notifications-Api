@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var EmailSchema = new Schema({
+var FailedEvents = new Schema({
 
     event: {
         addressee: {
@@ -34,5 +34,6 @@ var EmailSchema = new Schema({
 
 });
 
-var send_email = mongoose.model('send_email', EmailSchema);
-exports.email = send_email;
+var failedEvent = mongoose.model('failed_event', FailedEvents);
+
+module.exports = failedEvent;

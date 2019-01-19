@@ -11,27 +11,37 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get("/message", async (req, res) => {
+router.post("/message", async (req, res) => {
 
     let event = {
         slackUri:'https://hooks.slack.com/services/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',
         message:'doña limón.'
     };
-    const service = new SendSlackMessageService;
-    await service.sendFromEvent(event);
+    await SendSlackMessageService.sendFromEvent(event);
     res.json({
         message:'Message was sent.'
     })
 
 });
 
-router.get("/email", (req, res) => {
+router.post("/email", async (req, res) => {
+
+    const addressee = req.body.addressee;
+    const subject = req.body.subject;
+    const message = req.body.message;
+    const files = [];
+
     let event = {
-        addressee:'kmilo93sd@gmail.com',
-        subject:'ascac',
-        message:'avva',
-        files:[]
+        addressee:addressee,
+        subject:subject,
+        message:message,
+        files:files
     };
-    SendEmailService.send(event);
+
+    await SendEmailService.send(event);
+    res.json({
+        message:'The email was sent.'
+    });
 });
+
 module.exports = router;

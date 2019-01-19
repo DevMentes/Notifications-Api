@@ -14,13 +14,13 @@ module.exports = class EmailSender {
         });
     }
 
-    send(addressee, subject, message, files = []){
+    async send(addressee, subject, message, files = []){
         var mailOptions = {
             from: this.originEmail,
             to: addressee,
             subject: subject,
             text: message
         };
-        return this.transporter.sendMail(mailOptions);
+        return await this.transporter.sendMail(mailOptions);
     }
 };
